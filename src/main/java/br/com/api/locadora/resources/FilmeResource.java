@@ -1,9 +1,7 @@
 package br.com.api.locadora.resources;
 
-import br.com.api.locadora.models.Autor;
 import javax.ws.rs.Path;
 import br.com.api.locadora.models.Filme;
-import br.com.api.locadora.models.Genero;
 import java.util.List;
 import java.util.UUID;
 import javax.ejb.Stateless;
@@ -43,12 +41,6 @@ public class FilmeResource {
     
     @POST
     public Response addFilme(Filme filme) {
-        Autor autor = entityManager.find(Autor.class, filme.getAutor().getId());
-        filme.setAutor(autor);
-        
-        Genero genero = entityManager.find(Genero.class, filme.getGenero().getId());
-        filme.setGenero(genero);
-        
         entityManager.persist(filme);
         return Response
                 .status(Response.Status.CREATED)
