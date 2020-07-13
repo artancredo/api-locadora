@@ -1,5 +1,6 @@
 package br.com.api.locadora.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -25,6 +26,7 @@ public class Filme implements Serializable {
     
     @Column(name = "DATA_LANC", nullable = false)
     @Temporal(TemporalType.DATE)    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "UTC")
     private Date dataLancamento;
     
     @Column(name = "SINOPESE", nullable = false, length = 20)
@@ -40,11 +42,14 @@ public class Filme implements Serializable {
     @Column(name = "ID_GENERO", nullable = false)
     @JoinColumn(name = "ID_GENERO", insertable = false, updatable = false, referencedColumnName = "ID")
     private Genero genero;
+    
+    @Column(name = "VALOR", nullable = false)
+    private Float valor;
 
     public Filme() {
     }
 
-    public Filme(UUID id, String nome, Date dataLancamento, String sinopse, String imagem, Autor autor, Genero genero) {
+    public Filme(UUID id, String nome, Date dataLancamento, String sinopse, String imagem, Autor autor, Genero genero, Float valor) {
         this.id = id;
         this.nome = nome;
         this.dataLancamento = dataLancamento;
@@ -52,7 +57,9 @@ public class Filme implements Serializable {
         this.imagem = imagem;
         this.autor = autor;
         this.genero = genero;
+        this.valor = valor;
     }
+    
 
     public UUID getId() {
         return id;
@@ -108,5 +115,13 @@ public class Filme implements Serializable {
 
     public void setGenero(Genero genero) {
         this.genero = genero;
+    }
+
+    public Float getValor() {
+        return valor;
+    }
+
+    public void setValor(Float valor) {
+        this.valor = valor;
     }
 }

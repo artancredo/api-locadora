@@ -1,5 +1,6 @@
 package br.com.api.locadora.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -31,10 +32,12 @@ public class Locacao implements Serializable {
     
     @Column(name = "DATA_INI", nullable = false)
     @Temporal(TemporalType.DATE)    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "UTC")
     private Date dataInicio;
     
     @Column(name = "DATA_FIM", nullable = false)
     @Temporal(TemporalType.DATE)    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "UTC")
     private Date dataFim;
     
     @Column(name = "VALOR", nullable = false)

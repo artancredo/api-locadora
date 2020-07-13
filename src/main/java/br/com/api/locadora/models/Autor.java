@@ -1,5 +1,6 @@
 package br.com.api.locadora.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -25,6 +26,7 @@ public class Autor implements Serializable {
     
     @Column(name = "DATA_NASC", nullable = false)
     @Temporal(TemporalType.DATE)    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", locale = "pt-BR", timezone = "UTC")
     private Date dataNascimento;
     
     @Column(name = "NACIONALIDADE", nullable = false, length = 20)
